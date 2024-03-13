@@ -22,10 +22,16 @@ public class MyQueue<T>  {
     }
 
     public T poll() {
-        T data = head.getValue();
-        head = head.getNext();
+        T data = null;
+
+        if (!isEmpty()) {
+            data = head.getValue();
+            head = head.getNext();
+        }
+
         return data;
     }
+
 
 
     public T peek() {

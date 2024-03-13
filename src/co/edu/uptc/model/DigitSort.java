@@ -25,7 +25,7 @@ public class DigitSort {
     private PriorittyQueue<String> assignedQueue(String[] numbers, PriorittyQueue<String> queue,int i){
         for (String number : numbers) {
             if (number!=null) {
-                int level = number.charAt(number.length() - 1 - i);
+                int level = number.charAt(number.length() - 1 - i)-'0';
                 queue.push(number, level);
             }
         }
