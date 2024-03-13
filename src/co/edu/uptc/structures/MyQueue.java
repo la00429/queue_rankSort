@@ -32,8 +32,6 @@ public class MyQueue<T>  {
         return data;
     }
 
-
-
     public T peek() {
         return head.getValue();
     }

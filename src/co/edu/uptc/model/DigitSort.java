@@ -10,7 +10,7 @@ public class DigitSort {
 
     private String[] sortQueueNumbers(String numberQueue) {
         int maxDigits = maxDigitsCount(numberQueue);
-        PriorittyQueue<String> queue = new PriorittyQueue<String>(9);
+        PriorittyQueue<String> queue = new PriorittyQueue<String>(10);
         String[] numbers = numberQueue.split(",");
         String[] numbersAux = new String[numbers.length];
         if (!numberQueue.isEmpty()) {
@@ -22,22 +22,23 @@ public class DigitSort {
         return numbers;
     }
 
-    private PriorittyQueue<String> assignedQueue(String[] numbers, PriorittyQueue<String> queue,int i){
+    private PriorittyQueue<String> assignedQueue(String[] numbers, PriorittyQueue<String> queue, int i) {
+        int count = 0;
         for (String number : numbers) {
-            if (number!=null) {
-                int level = number.charAt(number.length() - 1 - i)-'0';
-                queue.push(number, level);
-            }
+            count++;
+            int level = number.charAt(number.length() - 1 - i) - 48;
+            queue.push(number, level);
         }
         return queue;
     }
 
 
-    private String [] assignedArray(String[] numbersAux, String[] numbers, PriorittyQueue<String> queue){
-        for (int j = 0; j < numbers.length; j++) {
-            numbersAux[j] = queue.pull();
-        }
-        numbers=numbersAux;
+    private String[] assignedArray(String[] numbersAux, String[] numbers, PriorittyQueue<String> queue) {
+        for (int j = 0; j < numbers.length; j++)
+            if (!queue.isEmpty()) {
+                numbersAux[j] = queue.pull();
+            }
+        numbers = numbersAux;
         return numbers;
     }
 
@@ -52,7 +53,7 @@ public class DigitSort {
         return maxNumber.length();
     }
 
-    public String[] showOrderNumbers(String numberQueue){
+    public String[] showOrderNumbers(String numberQueue) {
         return sortQueueNumbers(numberQueue);
     }
 }
